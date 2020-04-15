@@ -3,8 +3,8 @@
 Paso 0: Entorno de Trabajo
 
 a. Capturas de pantalla de la ejecución del aplicativo (con y sin Valgrind).
-![Ejecucion sin valgrind](https://github.com/Andivisciglio/tp0/img/Run_0.png)
-![Ejecucion con valgrind](https://github.com/Andivisciglio/tp0/img/Valgrind_0.png)
+![Ejecucion sin valgrind](img/Run_0.png)
+![Ejecucion con valgrind](img/Valgrind_0.png)
 
 b. ¿Para qué sirve ​ Valgrind​ ? ¿Cuáles son sus opciones más comunes?
 Valgrind es una herramienta de debugeo que sirve para realizar seguimientos en el uso de la memoria por parte del programa que queremos ejecutar. Su opcion mas comun es Memcheck pero tambien cuenta con las siguientes herramientas; Massif, Cachegrind y Helgrind.
