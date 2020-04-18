@@ -25,3 +25,44 @@ e. Investigar la existencia de los archivos estándar: STDIN, STDOUT, STDERR. Ex
 |​ ).
 
 Los archivos estandar STDIN, STDOUT, STDERR estan vinculados a la ejecucion de un programa y determinan distintos puntos de acceso para el mismo. Por ejemplo, el stdin es la entrada de texto hacia un programa y se puede redirigir con 'command < file'. El stdout es la salida del programa y se puede redireccionar utilizando 'command > file'. Stderr por su parte es donde se almacenan los mensajes de error y para redirigilo utilizamos 'command 2>file'. Por ultimo contamos con el comando de pipe, para conectar dos ejecuciones de programas, uniendo la salida de uno (stdout) con la entrada (stdin) del otro. Un ejemplo seria <command1> | <command2>.
+
+
+Paso 1: SERCOM - Errores de generación y normas de programación
+
+a. Captura de pantalla mostrando los problemas de estilo detectados. Explicar cada uno.
+![Errores de estilo](img/ErrorSercom_1.png)
+El primer error indica que falta un espaciado entre el while y el '('.
+El segundo error indica que los espaciados dentro del condicional 'if' son inconcistentes. Hay dos al iniciar la sentencia y ninguno al finalizar.
+El tercero nos indica como deberia ser la forma correcta relacionada al segundo error. Un espaciado simple al inicio y otro al final.
+El cuarto indica que el 'else' de una sentencia 'if' debe ir en la misma linea donde termina la llave del condicional anterior, por ejemplo la forma correcta seria '}else'.
+El siguiente error, relacionado al anterior nos dice que podemos optar por el formato 'else' o '}else{'. Pero que no una sola llave en la misma linea del condicional.
+El sexto error nos indica que debemos dejar un espacio luego del condicional 'if'.
+En la linea 53 del codigo nos marca que no debemos dejar espacios al momento de poner ';' al final de una sentencia.
+Luego, el siguiente error nos indica que es conveniente usar snprintf sobre strcpy.
+Ya en el documento main, vemos que se repiten el cuarto error y el quinto.
+Por ultimo, se nos indica que las lineas deben tener un largo maximo de 80 caracteres.
+
+b. Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.
+![Ejecucion con valgrind](img/ErrorSercom2_1.png)
+Se tratan todos de errores de compilacion.
+El primer error 'unknown type wordscounter_t' sucede porque no existe una declaration del tipo entonces el compilador no sabe que tamanio tiene ni siquiera sabe si va a existir en algun lado.
+
+Los siguientes errores son muy similares entre si. Son tres llamados a funciones que estan definidas en otro archivo y que no estan referenciadas en el archivo del main. El compilador no tiene forma de saber que esas funciones existen y ni que parametros reciben.
+
+
+c. ¿El sistema reportó algún WARNING? ¿Por qué?
+El sistema no reporto ningun warning, reporto todos como errores por que se utilizo el comando Werror que toma los warnings como errores.
+
+Paso 2: SERCOM - Errores de generación 2
+
+a. Describa ​ en breves palabras​ las correcciones realizadas respecto de la versión anterior.
+
+Las correciones fueron principalmente de sintaxis, adecuando a lo que pedian los mensajes de error de la corrida anterior. Tambien se cambio la funcion strcpy por memcpy ya que la corrida anterior recomendaba no usarla. Tambien se incluyeron los encabezados correspondientes para hacer referencia a los archivos con las funciones
+
+b. Captura de pantalla indicando la correcta ejecución de verificación de normas de
+programación.
+![Correcta ejecucion de verificacion de normas de programacion en SERCOM](img/SercomRun_2.png)
+
+
+c. Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.
+![Errores en la corrida de SERCOM](img/SercomError_2.png)
