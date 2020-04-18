@@ -82,5 +82,39 @@ a. Describa en breves palabras las correcciones realizadas respecto de la versi�
 Se agrego la libreria que contiene malloc (stdlib) en wordscounter.c y se agregaron dos liberarias en el .h que antes faltaban.
 
 b. Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.
+
 ![Errores en la corrida de SERCOM](img/SercomError_3.png)
+
 El error indicado sobre la funcion destroy "undefined reference" nos dice que el linker no puedo encontrar la definicion de esta funcion. Puedo compilar porque hay una forward declaration de la misma, pero despues no pudo linkear por no estar definida en ningun lado.
+
+
+Paso 4: SERCOM - ​ Memory Leaks y ​ Buffer Overflows
+
+
+a. Describa en breves palabras las correcciones realizadas respecto de la versión anterior.
+
+Con respecto a la version anterior se agrego la definicion de la funcion "destroy" que faltaba .
+
+b. Captura de pantalla del resultado de ejecución con Valgrind​ de la prueba ‘TDA’. Describir los errores reportados por Valgrind.
+
+![Errores en la corrida de SERCOM](img/TDAValgrindError_4.png)
+
+Los errores reportados por Valgrind indican que hay errores de perdida de memoria.
+En primer lugar detecta que hay un pedido de memoria mediante malloc, que es llamado por fopen() y luego no es liberado causando un memory leak.
+Luego, el malloc que realiza la funcion wordscounter.c tampoco es liberado al finalizar el programa, produciendo el segundo memory leak.
+
+
+c. Captura de pantalla del resultado de ejecución con Valgrind​ de la prueba ‘Long Filename’. Describir los errores reportados por Valgrind.
+
+![Errores en la corrida de SERCOM](img/LongFileValgrindError_4.png)
+
+El error que podemos ver relacionado al Memcheck indica que se guardo mas informacion de la que entraba en el buffer, lo que llevo a "pisar" la memoria contigua al buffer, lo cual presenta un riesgo de fallo inminente.
+
+d. ¿Podría solucionarse este error utilizando la función strncpy​ ? ¿Qué hubiera ocurrido con la ejecución de la prueba?
+Si, ya que de esta forma uno puede limitar la cantidad de caracteres que se copian segun el tamanio del buffer disponible.
+La prueba no hubiese tirado error si se utilizara la funcion strncpy.
+
+
+e. Explicar de qué se trata un ​segmentation fault​ y un ​ buffer overflow​.
+Segmentation Fault hace referencia a un acceso a memoria invalido, por ejemplo si queremos leer una seccion de memoria sobre la que no tenemos permiso o si queremos escribir memoria de solo lectura.
+Por otro lado buffer overflow significa que nos pasamos de los limites de espacio reservado para una variable y comenzamos a escribir sobre otros espacios de memoria, con posibles consecuencias.
