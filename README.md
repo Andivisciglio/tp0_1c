@@ -66,3 +66,21 @@ programación.
 
 c. Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.
 ![Errores en la corrida de SERCOM](img/SercomError_2.png)
+Los primeros errores sobre unknown type tanto de size_t como de FILE ocurren porque en el archivo .h no estan incluidas las librerias necesarias para utilizar esos tipos. Sin embargo, este error no ocurre en paso2_main.c. Esto se debe al orden de los includes. Al incluir ultimo el archivo paso2_worldscounter.h, toma las definiciones de los includes previos. Es por esto que rompe para un archivo .c y no para el otro. Se trata entonces de un error de compilacion ya que el compilador no tiene la informacion necesaria para crear el codigo objeto en el caso donde el orden de los includes no es el correcto.
+
+Luego, tenemos que el error de conflicting type de wordscounter_get_words sucede debido a que fallo la declaracion en el .h previamente mencionado. Esto genera que haya una declaracion incompatible con la definicion de la funcion.
+
+Asimismo, el error de "previous declaration" sucede por esta declaracion que fallo al no reconocer el tipo size_t lo cual nos deja dos declaraciones, una llamada por el main.c y el otro por wordscounter.c, ambas diferentes porque una fallo. Entonces aparece este error de compilacion.
+
+El error que vemos con respecto al malloc se produce porque falta importar la liberaria correspondiente que tiene esa funcionalidad definida, por lo que es un problema de compilacion.
+
+
+Paso 3: SERCOM - Errores de generación 3
+
+a. Describa en breves palabras las correcciones realizadas respecto de la versión anterior.
+
+Se agrego la libreria que contiene malloc (stdlib) en wordscounter.c y se agregaron dos liberarias en el .h que antes faltaban.
+
+b. Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.
+![Errores en la corrida de SERCOM](img/SercomError_3.png)
+El error indicado sobre la funcion destroy "undefined reference" nos dice que el linker no puedo encontrar la definicion de esta funcion. Puedo compilar porque hay una forward declaration de la misma, pero despues no pudo linkear por no estar definida en ningun lado.
