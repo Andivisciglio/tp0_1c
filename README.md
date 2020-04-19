@@ -118,3 +118,41 @@ La prueba no hubiese tirado error si se utilizara la funcion strncpy.
 e. Explicar de qué se trata un ​segmentation fault​ y un ​ buffer overflow​.
 Segmentation Fault hace referencia a un acceso a memoria invalido, por ejemplo si queremos leer una seccion de memoria sobre la que no tenemos permiso o si queremos escribir memoria de solo lectura.
 Por otro lado buffer overflow significa que nos pasamos de los limites de espacio reservado para una variable y comenzamos a escribir sobre otros espacios de memoria, con posibles consecuencias.
+
+
+Paso 5: SERCOM - Código de retorno y salida estándar
+
+a. Describa en breves palabras las correcciones realizadas respecto de la versión anterior.
+
+Se eliminio el paso intermedio en main para copiar el argumento recibido por parametro en el buffer. Ahora se pasa directo al open file.
+Luego, se erradico el uso de malloc en wordscounter.c, ahora la variable esta en la memoria del stack en vez del heap.
+
+b. Describa el motivo por el que fallan las prueba ‘Invalid File’ y ‘Single Word’. ¿Qué información entrega SERCOM para identificar el error? Realice una captura de pantalla.
+
+![Sercom InvalidFile](img/SercomInvalidFile_5.png)
+
+Invalid file falla porque deberia devolver error pero devuelve otro resultado. Sercom nos da esta informacion mediante la descripcion de la prueba.
+
+![Sercom SingleFile](img/SercomSingleFile_5.png)
+
+Con respecto a Single Word, este falla ya que deberia devolver -1 pero la respuesta fue 0.
+Sercom nos entrega el output esperado comparado con el output recibido.
+
+
+c. Captura de pantalla de la ejecución del comando hexdump​ . ¿Cuál es el último carácter del archivo input_single_word.txt?
+
+![Comando hexdump](img/hd_5.png)
+El ultimo caracter del archivo es 'd'. En ASCII 64.
+
+d. Captura de pantalla con el resultado de la ejecución con gdb​ . Explique brevemente los comandos utilizados en gdb​ . ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++; ​ ?
+
+![Comando GDB](img/gdb_5.png)
+
+El primer comando gdb ./tp se utiliza para dar comienzo al debugeo sobre el archivo tp
+info functions nos muestra todas las funciones que tiene definidas el programa.
+
+List nos permite ver el codigo fuente del programa indicado, en un intervalo de lineas. Es por eso que tuvimos  que utilizarlo dos veces para ver todo el programa.
+
+Break se utiliza para poner un punto de parada en el proceso de ejecucion en una determinada linea del codigo fuente. Break 45 deberia frenar el programa cuando este llegue a la linea 45.
+
+Lo que sucede es que, como pudimos ver cocn el comando hexdump, el archivo no tiene un delimitador al final, con lo cual la ejecucion de programa nunca entra en la condicion que contiene la linea 45 con el breakpoint.
