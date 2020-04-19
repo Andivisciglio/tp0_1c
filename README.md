@@ -37,7 +37,7 @@ Por ejemplo, si tengo un struct que solo tiene dos tipos int, entonces su sizeof
 Los archivos estandar STDIN, STDOUT, STDERR estan vinculados a la ejecucion de un programa y determinan distintos puntos de acceso para el mismo. Por ejemplo, el stdin es la entrada de texto hacia un programa y se puede redirigir con 'command < file'. El stdout es la salida del programa y se puede redireccionar utilizando 'command > file'. Stderr por su parte es donde se almacenan los mensajes de error y para redirigilo utilizamos 'command 2>file'. Por ultimo contamos con el comando de pipe, para conectar dos ejecuciones de programas, uniendo la salida de uno (stdout) con la entrada (stdin) del otro. Un ejemplo seria <command1> | <command2>.
 
 
-##Paso 1: SERCOM - Errores de generación y normas de programación
+## Paso 1: SERCOM - Errores de generación y normas de programación
 
 **a. Captura de pantalla mostrando los problemas de estilo detectados. Explicar cada uno.**
 
