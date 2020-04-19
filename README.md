@@ -156,3 +156,18 @@ List nos permite ver el codigo fuente del programa indicado, en un intervalo de 
 Break se utiliza para poner un punto de parada en el proceso de ejecucion en una determinada linea del codigo fuente. Break 45 deberia frenar el programa cuando este llegue a la linea 45.
 
 Lo que sucede es que, como pudimos ver cocn el comando hexdump, el archivo no tiene un delimitador al final, con lo cual la ejecucion de programa nunca entra en la condicion que contiene la linea 45 con el breakpoint.
+
+
+Paso 6: SERCOM - Entrega exitosa
+
+a. Describa en breves palabras las correcciones realizadas respecto de la versión anterior.
+
+Con respecto a la version anterior, se agrego una condicion de sumar una palabra si estoy ubicado en el final del archivo.
+
+b. Captura de pantalla mostrando todas las entregas realizadas​ , tanto exitosas como fallidas.
+
+![Corridas Sercom](img/CorridasAprobadas_6.png)
+
+c. Captura de pantalla mostrando la ejecución de la prueba ‘Single Word’ de forma local​ con las distintas variantes indicadas.
+
+![Corridas Locales](img/CorridasPaso6.png)
