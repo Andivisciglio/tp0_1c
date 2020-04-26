@@ -169,8 +169,6 @@ Sercom nos entrega el output esperado comparado con el output recibido.
 
 El ultimo caracter del archivo es 'd'. En ASCII 64.
 
-<!-- Los caracteres de la izquierda representan el offset en hexadecimal del primer byte de la linea, en este caso, por ser el ultimo tambien nos dice el tamaño del archivo en bytes-->
-
 **d. Captura de pantalla con el resultado de la ejecución con gdb​ . Explique brevemente los comandos utilizados en gdb​ . ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++; ​?**
 
 ![Comando GDB](img/gdb_5.png)
