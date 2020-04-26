@@ -1,3 +1,5 @@
+<!-- Sugeriencia: aprender a usar markdown y revisar el informe antes de enviarlo -->
+
 # tp0
 
 **Nombre: Andres Tomas Visciglio**
@@ -36,6 +38,7 @@ Por ejemplo, si tengo un struct que solo tiene dos tipos int, entonces su sizeof
 
 Los archivos estandar STDIN, STDOUT, STDERR estan vinculados a la ejecucion de un programa y determinan distintos puntos de acceso para el mismo. Por ejemplo, el stdin es la entrada de texto hacia un programa y se puede redirigir con 'command < file'. El stdout es la salida del programa y se puede redireccionar utilizando 'command > file'. Stderr por su parte es donde se almacenan los mensajes de error y para redirigilo utilizamos 'command 2>file'. Por ultimo contamos con el comando de pipe, para conectar dos ejecuciones de programas, uniendo la salida de uno (stdout) con la entrada (stdin) del otro. Un ejemplo seria <command1> | <command2>.
 
+<!-- Cuidado con usar '<' el markdown lo tomo como un comentario y no lo muestra en el git -->
 
 ## Paso 1: SERCOM - Errores de generación y normas de programación
 
@@ -54,6 +57,8 @@ Luego, el siguiente error nos indica que es conveniente usar snprintf sobre strc
 Ya en el documento main, vemos que se repiten el cuarto error y el quinto.
 Por ultimo, se nos indica que las lineas deben tener un largo maximo de 80 caracteres.
 
+<!-- Sugiero poner estos tipos de errores en forma de lista, con la sintaxis de markdown, que este cada definicion en una linea no quiere decir que lo muestre asi -->
+
 **b. Captura de pantalla indicando los errores de generación del ejecutable. Explicar cada uno e indicar si se trata de errores del compilador o del linker.**
 
 ![Ejecucion con valgrind](img/ErrorSercom2_1.png)
@@ -63,6 +68,7 @@ El primer error 'unknown type wordscounter_t' sucede porque no existe una declar
 
 Los siguientes errores son muy similares entre si. Son tres llamados a funciones que estan definidas en otro archivo y que no estan referenciadas en el archivo del main. El compilador no tiene forma de saber que esas funciones existen y ni que parametros reciben.
 
+<!-- El error de la imagen dice claramente error de declaracion, No de definicion -->
 
 **c. ¿El sistema reportó algún WARNING? ¿Por qué?**
 
@@ -138,7 +144,6 @@ La prueba no hubiese tirado error si se utilizara la funcion strncpy.
 Segmentation Fault hace referencia a un acceso a memoria invalido, por ejemplo si queremos leer una seccion de memoria sobre la que no tenemos permiso o si queremos escribir memoria de solo lectura.
 Por otro lado buffer overflow significa que nos pasamos de los limites de espacio reservado para una variable y comenzamos a escribir sobre otros espacios de memoria, con posibles consecuencias.
 
-
 ## Paso 5: SERCOM - Código de retorno y salida estándar
 
 **a. Describa en breves palabras las correcciones realizadas respecto de la versión anterior.**
@@ -163,6 +168,8 @@ Sercom nos entrega el output esperado comparado con el output recibido.
 ![Comando hexdump](img/hd_5.png)
 
 El ultimo caracter del archivo es 'd'. En ASCII 64.
+
+<!-- Los caracteres de la izquierda representan el offset en hexadecimal del primer byte de la linea, en este caso, por ser el ultimo tambien nos dice el tamaño del archivo en bytes-->
 
 **d. Captura de pantalla con el resultado de la ejecución con gdb​ . Explique brevemente los comandos utilizados en gdb​ . ¿Por qué motivo el debugger no se detuvo en el breakpoint de la línea 45: self->words++; ​?**
 
